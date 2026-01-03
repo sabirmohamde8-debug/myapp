@@ -1,0 +1,70 @@
+
+  <!DOCTYPE html>
+  <html lang="ar">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>تطبيق AI (ChatGPT)</title>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+ 
+<div class="card">
+    <h1>🔢 حساب العمر</h1>
+    <p>أدخل تاريخ الازدياد</p>
+
+    <input type="date" id="birthDate">
+    <button onclick="calculateAge()">احسب العمر</button>
+
+    <div id="result" class="result"></div>
+</div>
+
+
+
+       
+     
+    
+    
+    
+ 
+  
+    <script>
+      function calculateAge() {
+        const birthInput = document.getElementById("birthDate").value;
+        const result = document.getElementById("result");
+    
+        if (!birthInput) {
+            result.innerHTML = "⚠️ المرجو إدخال تاريخ الازدياد";
+            return;
+        }
+    
+        const birthDate = new Date(birthInput);
+        const today = new Date();
+    
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+    
+        if (days < 0) {
+            months--;
+            const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+            days += lastMonth.getDate();
+        }
+    
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+    
+        result.innerHTML = `
+            🎂 عمرك هو:<br>
+            ${years} سنة<br>
+            ${months} شهر<br>
+            ${days} يوم
+        `;
+    }
+    
+      
+    </script>
+</body>
+</html>
